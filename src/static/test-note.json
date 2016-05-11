@@ -1,0 +1,450 @@
+[
+  {
+    "chain": "good",
+    "values": [
+      {
+        "title": "Service sector",
+        "notificationTemplate": {
+          "body": "Jobs in the service sector went up by a lot this month.",
+          "data": {
+            "onTap": [
+              {
+                "command": "closeNotification"
+              },
+              {
+                "command": "openURL",
+                "options": {
+                  "url": "http://www.guardian.co.uk"
+                }
+              }
+            ]
+          }
+        },
+        "actions": [
+          {
+            "label": "sameChain",
+            "commands": [
+              {
+                "command": "notificationFromChain",
+                "options": {
+                  "chain": "good"
+                }
+              },
+              {
+                "command": "closeNotification"
+              }
+            ],
+            "template": {
+              "title": "More good"
+            }
+          },
+          {
+            "label": "switchChain",
+            "switchTo": "bad",
+            "commands": [
+              {
+                "command": "notificationFromChain",
+                "options": {
+                  "chain": "bad"
+                }
+              },
+              {
+                "command": "closeNotification"
+              }
+            ],
+            "template": {
+              "title": "Bad news"
+            }
+          },
+          {
+            "label": "article",
+            "commands": [
+              {
+                "command": "closeNotification"
+              },
+              {
+                "command": "openURL",
+                "options": {
+                  "url": "http://www.guardian.co.uk"
+                }
+              }
+            ],
+            "template": {
+              "title": "View article"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Tourism",
+        "notificationTemplate": {
+          "body": "There are more people employed in the tourism sector than ever before",
+          "data": {
+            "onTap": [
+              {
+                "command": "closeNotification"
+              },
+              {
+                "command": "openURL",
+                "options": {
+                  "url": "http://www.guardian.co.uk"
+                }
+              }
+            ]
+          }
+        },
+        "actions": [
+          {
+            "label": "sameChain",
+            "commands": [
+              {
+                "command": "notificationFromChain",
+                "options": {
+                  "chain": "good"
+                }
+              },
+              {
+                "command": "closeNotification"
+              }
+            ],
+            "template": {
+              "title": "More good"
+            }
+          },
+          {
+            "label": "switchChain",
+            "switchTo": "bad",
+            "commands": [
+              {
+                "command": "notificationFromChain",
+                "options": {
+                  "chain": "bad"
+                }
+              },
+              {
+                "command": "closeNotification"
+              }
+            ],
+            "template": {
+              "title": "Bad news"
+            }
+          },
+          {
+            "label": "article",
+            "commands": [
+              {
+                "command": "closeNotification"
+              },
+              {
+                "command": "openURL",
+                "options": {
+                  "url": "http://www.guardian.co.uk"
+                }
+              }
+            ],
+            "template": {
+              "title": "View article"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Auto industry",
+        "notificationTemplate": {
+          "body": "More people are making cars.",
+          "data": {
+            "onTap": [
+              {
+                "command": "closeNotification"
+              },
+              {
+                "command": "openURL",
+                "options": {
+                  "url": "http://www.guardian.co.uk"
+                }
+              }
+            ]
+          }
+        },
+        "actions": [
+          {
+            "label": "sameChain",
+            "commands": [
+              {
+                "command": "notificationFromChain",
+                "options": {
+                  "chain": "good"
+                }
+              },
+              {
+                "command": "closeNotification"
+              }
+            ],
+            "template": {
+              "title": ""
+            }
+          },
+          {
+            "label": "switchChain",
+            "switchTo": "bad",
+            "commands": [
+              {
+                "command": "notificationFromChain",
+                "options": {
+                  "chain": "bad"
+                }
+              },
+              {
+                "command": "closeNotification"
+              }
+            ],
+            "template": {
+              "title": "OK, give me bad news."
+            }
+          },
+          {
+            "label": "article",
+            "commands": [
+              {
+                "command": "closeNotification"
+              },
+              {
+                "command": "openURL",
+                "options": {
+                  "url": "http://www.guardian.co.uk"
+                }
+              }
+            ],
+            "template": {
+              "title": "View article"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "chain": "bad",
+    "values": [
+      {
+        "title": "Numbers are down",
+        "notificationTemplate": {
+          "body": "Jobs are still increasing, but not anywhere near as much as they have been in the past.",
+          "data": {
+            "onTap": [
+              {
+                "command": "closeNotification"
+              },
+              {
+                "command": "openURL",
+                "options": {
+                  "url": "http://www.guardian.co.uk"
+                }
+              }
+            ]
+          }
+        },
+        "actions": [
+          {
+            "label": "sameChain",
+            "commands": [
+              {
+                "command": "notificationFromChain",
+                "options": {
+                  "chain": "bad"
+                }
+              },
+              {
+                "command": "closeNotification"
+              }
+            ],
+            "template": {
+              "title": "More bad"
+            }
+          },
+          {
+            "label": "switchChain",
+            "switchTo": "good",
+            "commands": [
+              {
+                "command": "notificationFromChain",
+                "options": {
+                  "chain": "good"
+                }
+              },
+              {
+                "command": "closeNotification"
+              }
+            ],
+            "template": {
+              "title": "Good news"
+            }
+          },
+          {
+            "label": "article",
+            "commands": [
+              {
+                "command": "closeNotification"
+              },
+              {
+                "command": "openURL",
+                "options": {
+                  "url": "http://www.guardian.co.uk"
+                }
+              }
+            ],
+            "template": {
+              "title": "View article"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Hollywood",
+        "notificationTemplate": {
+          "body": "Hasn't been making as much money, fewer peopel are working in the entertainment industry",
+          "data": {
+            "onTap": [
+              {
+                "command": "closeNotification"
+              },
+              {
+                "command": "openURL",
+                "options": {
+                  "url": "http://www.guardian.co.uk"
+                }
+              }
+            ]
+          }
+        },
+        "actions": [
+          {
+            "label": "sameChain",
+            "commands": [
+              {
+                "command": "notificationFromChain",
+                "options": {
+                  "chain": "bad"
+                }
+              },
+              {
+                "command": "closeNotification"
+              }
+            ],
+            "template": {
+              "title": "More bad"
+            }
+          },
+          {
+            "label": "switchChain",
+            "switchTo": "good",
+            "commands": [
+              {
+                "command": "notificationFromChain",
+                "options": {
+                  "chain": "good"
+                }
+              },
+              {
+                "command": "closeNotification"
+              }
+            ],
+            "template": {
+              "title": "Good news"
+            }
+          },
+          {
+            "label": "article",
+            "commands": [
+              {
+                "command": "closeNotification"
+              },
+              {
+                "command": "openURL",
+                "options": {
+                  "url": "http://www.guardian.co.uk"
+                }
+              }
+            ],
+            "template": {
+              "title": "View article"
+            }
+          }
+        ]
+      },
+      {
+        "title": "A third one",
+        "notificationTemplate": {
+          "body": "A third bit of bad news.",
+          "data": {
+            "onTap": [
+              {
+                "command": "closeNotification"
+              },
+              {
+                "command": "openURL",
+                "options": {
+                  "url": "http://www.guardian.co.uk"
+                }
+              }
+            ]
+          }
+        },
+        "actions": [
+          {
+            "label": "sameChain",
+            "commands": [
+              {
+                "command": "notificationFromChain",
+                "options": {
+                  "chain": "bad"
+                }
+              },
+              {
+                "command": "closeNotification"
+              }
+            ],
+            "template": {
+              "title": ""
+            }
+          },
+          {
+            "label": "switchChain",
+            "switchTo": "good",
+            "commands": [
+              {
+                "command": "notificationFromChain",
+                "options": {
+                  "chain": "good"
+                }
+              },
+              {
+                "command": "closeNotification"
+              }
+            ],
+            "template": {
+              "title": "Cheer me up with good news"
+            }
+          },
+          {
+            "label": "article",
+            "commands": [
+              {
+                "command": "closeNotification"
+              },
+              {
+                "command": "openURL",
+                "options": {
+                  "url": "http://www.guardian.co.uk"
+                }
+              }
+            ],
+            "template": {
+              "title": "View article"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

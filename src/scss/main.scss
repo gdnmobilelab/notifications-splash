@@ -1,0 +1,77 @@
+@import "reset.scss";
+@import "toggle.scss";
+@import "fonts.scss";
+
+body {
+    font-family: 'Guardian Text Egyptian Web', serif;
+    padding: 5vmin;
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 400;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px 0px;
+    margin-bottom: 20px;
+}
+
+#logo {
+    width: 30vw;
+    max-width: 300px;
+    height: 30vw;
+    max-height: 300px;
+    background: url('../images/gdnmobilelab-logo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 20px auto;
+}
+
+h4 {
+    color: #5BCDE2;
+    font-weight: 300;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #27508C;
+    margin-bottom: 1em;
+}
+
+p {
+    margin: 1em 0;
+    font-size: 16px;
+    line-height: 24px;
+    //font-weight: 300;
+}
+
+.button-row {
+    line-height: 32px;
+    //height: 32px;
+}
+
+.as-button, button {
+    display: block;
+    margin-top: 2em;
+    background: #27508C;
+    color: #fff;
+    text-decoration: none;
+    padding: 15px 0px;
+    text-align: center;
+    border:none;
+    font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+    font-weight: 200;
+}
+
+button.active {
+    background: #851E1E;
+}
+
+button.disabled {
+    background: #ccc;
+}

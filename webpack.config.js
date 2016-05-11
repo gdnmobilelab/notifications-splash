@@ -1,18 +1,18 @@
 var webpack = require('webpack');
 var path = require('path');
-var testloader = require('./test-loader');
 var HTMLWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var S3Plugin = require('webpack-s3-plugin');
+var CompressionPlugin = require('compression-webpack-plugin');
 
-var config = require('./config/stg.json');
+var config = require('./config/dev.json');
 
 module.exports = {
     context: path.join(__dirname, 'src'),
     entry: {
-        client: './client.js',
-        sw: './sw.js',
-        css: './test.css'
+        client: './js/web/client.js',
+        sw: './js/service-worker/sw.js',
+        css: './scss/main.scss'
     },
     output: {
         path: './dist',
@@ -22,16 +22,21 @@ module.exports = {
         loaders: [
             {
                 test: /\.js$/,
-                include: path.join(__dirname, 'src'),
+                include: path.join(__dirname, 'src', 'js'),
                 loader: 'babel-loader'
             },
             {
-                test: /\.css$/,
+                test: /\.scss$/,
+                include: path.join(__dirname, 'src', 'scss'),
+                loaders: ['style-loader', 'css-loader', 'sass-loader']
+            },
+             {
+                test: /\.json$/,
                 include: path.join(__dirname, 'src'),
-                loaders: ['style-loader', 'css-loader']
+                loaders: ['json-loader']
             },
             {
-                test: /\.png$/,
+                test: /\images\/(.*)$/,
                 loaders: ['file-loader']
             }
         ]
@@ -46,7 +51,8 @@ module.exports = {
             from: 'static'
         }]),
         new webpack.DefinePlugin({
-            "CLIENT_CONFIG": JSON.stringify(config.CLIENT_SAFE)
+            "CLIENT_CONFIG": JSON.stringify(config.CLIENT_SAFE),
+            "ANALYTICS_ID": JSON.stringify("UA-77348538-2")
         })
     ]
 }
@@ -103,7 +109,9 @@ if (process.env.WEBPACK_PUBLISH === 'true') {
     
     
 
-    module.exports.plugins.push(new S3Plugin({
+    module.exports.plugins.push(
+        //new CompressionPlugin({asset: '{file}'}),
+        new S3Plugin({
         
         s3Options: {
             accessKeyId: config.AWS_ACCESS_KEY_ID,
@@ -112,8 +120,10 @@ if (process.env.WEBPACK_PUBLISH === 'true') {
         },
         s3UploadOptions: {
             Bucket: config.AWS_BUCKET,
-            ACL: 'private'
+            ACL: 'private',
+            CacheControl: 'max-age=60, no-transform, public'/*,
+            ContentEncoding: 'gzip'*/
         },
-        basePath: 'apps/pushy-demo'
+        basePath: 'dev-apps/notification-demo'
     }))
 }
