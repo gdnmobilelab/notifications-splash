@@ -2,6 +2,7 @@ import generateGUID from './guid';
 import db from './db';
 import querystring from 'query-string';
 import PromiseTools from 'promise-tools';
+import config from '../shared/config';
 
 let cachedGUID = null;
 let syncIsRunning = false;
@@ -33,7 +34,7 @@ const analytics = {
         .then((guid) => {
             let data = Object.assign({
                 v: 1,
-                tid: ANALYTICS_ID,
+                tid: config.GA_ID,
                 cid: guid
             }, opts);
             

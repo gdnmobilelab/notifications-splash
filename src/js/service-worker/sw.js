@@ -2,6 +2,7 @@ import apiRequest from '../shared/api-request';
 import ServiceWorkerReceiver from './sw-receive';
 import commands from './commands';
 import PromiseTools from 'promise-tools';
+import config from '../shared/config';
 
 self.addEventListener('activate', function(event) {
     event.waitUntil(self.clients.claim())
@@ -70,13 +71,13 @@ ServiceWorkerReceiver.bind('get-notification-status', () => {
         }
         return apiRequest('/get-subscriptions', 'POST', {type: 'web', data: sub})
         .then((topics) => {
-            return topics.indexOf('pushy_demo') > -1;
+            return topics.indexOf(config.TOPIC_ID) > -1;
         })
     })
 })
 
 ServiceWorkerReceiver.bind('subscribe', (subscription) => {
-    return apiRequest('/topics/test/subscriptions','POST', {
+    return apiRequest(`/topics/${config.TOPIC_ID}/subscriptions`,'POST', {
         type: 'web',
         data: subscription,
         confirmationNotification: [
@@ -86,7 +87,8 @@ ServiceWorkerReceiver.bind('subscribe', (subscription) => {
                     "title": "Subscription confirmed",
                     "options": {
                         body: "You have signed up to receive alerts from the mobile lab.",
-                        icon: "https://www.gdnmobilelab.com/images/mobilelab-logo-thick.png"
+                        icon: "https://www.gdnmobilelab.com/images/mobilelab-logo-thick.png",
+                        tag: "signup-confirmation"
                     }
                 }
             }
@@ -106,7 +108,7 @@ ServiceWorkerReceiver.bind('capability-check', () => {
 })
 
 ServiceWorkerReceiver.bind('unsubscribe', (subscription) => {
-    return apiRequest('/topics/test/subscriptions','DELETE', {
+    return apiRequest(`/topics/${config.TOPIC_ID}/subscriptions`,'DELETE', {
         type: 'web',
         data: subscription
     })

@@ -2,10 +2,45 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Notifications Experiment</title>
+    <title>Guardian Mobile Lab at Google I/O</title>
     <link rel="manifest" href="./manifest.json">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
+    <div id="logo"></div>
+    <h4>Guardian Mobile Innovation Lab</h4>
+    <h1>At Google I/O</h1>
+    <div id="content-switch">
+      <div id="can-run-experiment">
+        <p>Hi! We hope to see you on Friday, May 20th in Mountain View.</p>
+        <p>In the meantime, click the button below to gain access to our web notification experiments.</p> 
+        <p>If you’d like to see a sample alert now, tap on the ‘Sample alert’ button to see a live demo of the 
+        notification sequence we ran as an internal Guardian experiment with the April Jobs Report.</p> 
+        <p>If you questions or need help signing up, please email us at <a href="mailto:innovationlab@theguardian.com">innovationlab@theguardian.com</a>. Thanks!</p>
+        
+        <div id="react-container">
+        </div>
+      </div>
+      
+      
+      <div id="chrome-low-version">
+        <p>
+            Hi! In order to gain access to our web notification experiments, you need to be running the latest version of Chrome.
+            Plese update from the Play store here:
+        </p>
+        <a href="https://play.google.com/store/apps/details?id=com.android.chrome" class="as-button">
+            Update Chrome
+        </a>
+        <p>If you questions or feedback, please email us at <a href="mailto:innovationlab@theguardian.com">innovationlab@theguardian.com</a>. We hope to see you at our event on May 20th in Mountain View. Thanks!</p>
+      </div>
+      
+      <div id="not-chrome">
+        <p>Hi! In order to gain access to our web notification experiments, you have to be in Chrome on an Android phone.</p> 
+        <p>If you don’t have an Android phone, you can still view the demo below.</p>
+        <p>If you questions or feedback, please email us at <a href="mailto:innovationlab@theguardian.com">innovationlab@theguardian.com</a>. We hope to see you at our event on May 20th in Mountain View. Thanks!</p>
+        <video src="//www.gdnmobilelab.com/files/notifications.mp4" controls poster="notify-permission.png"/>
+      </div>
+    </div>
+  
   </body>
 </html>

@@ -1,5 +1,4 @@
 @import "reset.scss";
-@import "toggle.scss";
 @import "fonts.scss";
 
 body {
@@ -8,6 +7,7 @@ body {
     max-width: 600px;
     margin: 0 auto;
     font-weight: 400;
+    padding-top: 0;
 }
 
 button {
@@ -25,7 +25,7 @@ button {
     background: url('../images/gdnmobilelab-logo.svg');
     background-size: contain;
     background-repeat: no-repeat;
-    margin: 20px auto;
+    margin: 40px auto;
 }
 
 h4 {
@@ -74,4 +74,27 @@ button.active {
 
 button.disabled {
     background: #ccc;
+}
+
+a {
+    color: #27508C;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+video {
+    width: 100%;
+    background: #000;
+    height: 50vw;
+}
+
+#content-switch > div {
+    display: none;
+}
+
+#content-switch.can-run-experiment #can-run-experiment,
+#content-switch.not-chrome #not-chrome,
+#content-switch.chrome-low-version #chrome-low-version
+ {
+    display: block;
 }

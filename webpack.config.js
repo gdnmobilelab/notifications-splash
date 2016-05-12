@@ -3,9 +3,16 @@ var path = require('path');
 var HTMLWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var S3Plugin = require('webpack-s3-plugin');
-var CompressionPlugin = require('compression-webpack-plugin');
+var argv = require('yargs').argv;
 
-var config = require('./config/dev.json');
+let stage = argv.stage;
+
+if (!argv.stage) {
+    stage = 'dev';
+    //throw new Error("Must declare what stage you want to deploy to with --stage dev|staging|prod");
+}
+
+var config = require(`./config/${stage}.json`);
 
 module.exports = {
     context: path.join(__dirname, 'src'),
@@ -51,8 +58,7 @@ module.exports = {
             from: 'static'
         }]),
         new webpack.DefinePlugin({
-            "CLIENT_CONFIG": JSON.stringify(config.CLIENT_SAFE),
-            "ANALYTICS_ID": JSON.stringify("UA-77348538-2")
+            "CLIENT_CONFIG": JSON.stringify(config.CLIENT_SAFE)
         })
     ]
 }
@@ -78,7 +84,6 @@ if (process.env.NODE_ENV === 'development') {
         });
     }
     
-    console.log(hostnameToUse) 
     
    
     
@@ -107,11 +112,11 @@ if (process.env.NODE_ENV === 'production') {
 
 if (process.env.WEBPACK_PUBLISH === 'true') {
     
-    
+        
+   
 
-    module.exports.plugins.push(
-        //new CompressionPlugin({asset: '{file}'}),
-        new S3Plugin({
+    
+    console.log({
         
         s3Options: {
             accessKeyId: config.AWS_ACCESS_KEY_ID,
@@ -120,10 +125,26 @@ if (process.env.WEBPACK_PUBLISH === 'true') {
         },
         s3UploadOptions: {
             Bucket: config.AWS_BUCKET,
-            ACL: 'private',
+            ACL: config.AWS_ACL,
             CacheControl: 'max-age=60, no-transform, public'/*,
             ContentEncoding: 'gzip'*/
         },
-        basePath: 'dev-apps/notification-demo'
+        basePath: config.AWS_ROOT_PATH
+    })
+
+    module.exports.plugins.push(
+        //new CompressionPlugin({asset: '{file}'}),
+        new S3Plugin({
+        
+        s3Options: {
+            region: 'us-east-1'
+        },
+        s3UploadOptions: {
+            Bucket: config.AWS_BUCKET,
+            ACL: config.AWS_ACL,
+            CacheControl: 'max-age=60, no-transform, public'/*,
+            ContentEncoding: 'gzip'*/
+        },
+        basePath: config.AWS_ROOT_PATH
     }))
 }
