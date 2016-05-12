@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import 'whatwg-fetch';
 import ServiceWorkerRun from './sw-run';
 import Buttons from './components/buttons';
+import '../../scss/main.scss';
 
 const contentSwitch = document.getElementById('content-switch');
 const reactContainer = document.getElementById("react-container");
