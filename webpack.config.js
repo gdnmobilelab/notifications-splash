@@ -24,7 +24,10 @@ module.exports = {
         loaders: [
             {
                 test: /\.js$/,
-                include: path.join(__dirname, 'src', 'js'),
+                include: [
+                    path.join(__dirname, 'src', 'js'),
+                    /sw-mini-libraries/
+                ],
                 loader: 'babel-loader'
             },
              {
@@ -38,6 +41,12 @@ module.exports = {
             }
         ]
     },
+    // resolve: {
+    //     modulesDirectories: [path.join(__dirname, "node_modules")]
+    // },
+    // resolveLoader: {
+    //     modulesDirectories: [path.join(__dirname, "node_modules")]
+    // },
     plugins: [
         new HTMLWebpackPlugin({
             excludeChunks: ['sw'],
