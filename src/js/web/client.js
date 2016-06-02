@@ -10,7 +10,12 @@ const contentSwitch = document.getElementById('content-switch');
 const reactContainer = document.getElementById("react-container");
 
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js');
+    if (config.SERVICE_WORKER_PATH) {
+        navigator.serviceWorker.register(SERVICE_WORKER_PATH);
+    } else {
+        navigator.serviceWorker.register('./sw.js');
+    }
+    
 }
 
 window.addEventListener("unhandledrejection", (err) => {
