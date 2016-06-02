@@ -9,19 +9,23 @@ import config from '../shared/config';
 const contentSwitch = document.getElementById('content-switch');
 const reactContainer = document.getElementById("react-container");
 
+window.addEventListener("unhandledrejection", (err) => {
+    // just trying this out
+    console.error(err);
+});
+
+
 if ('serviceWorker' in navigator) {
     if (SERVICE_WORKER_PATH) {
-        navigator.serviceWorker.register(SERVICE_WORKER_PATH);
+        console.log("registering", SERVICE_WORKER_PATH)
+        navigator.serviceWorker.register(SERVICE_WORKER_PATH)
+        .catch((err) => console.log(err))
     } else {
         navigator.serviceWorker.register('./sw.js');
     }
     
 }
 
-window.addEventListener("unhandledrejection", (err) => {
-    // just trying this out
-    console.error(err);
-});
 
 const canRunExperiment = () => {
     

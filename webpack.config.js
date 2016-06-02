@@ -14,7 +14,7 @@ module.exports = {
     context: path.join(__dirname, 'src'),
     entry: {
         client: './js/web/client.js',
-        sw: './js/service-worker/sw.js'
+        'notify-sw': './js/service-worker/sw.js'
     },
     output: {
         path: './dist',
@@ -24,7 +24,10 @@ module.exports = {
         loaders: [
             {
                 test: /\.js$/,
-                include: path.join(__dirname, 'src', 'js'),
+                include: [
+                    path.join(__dirname, 'src', 'js'),
+                    /sw-mini-libraries/
+                ],
                 loader: 'babel-loader'
             },
              {
@@ -38,9 +41,15 @@ module.exports = {
             }
         ]
     },
+    // resolve: {
+    //     modulesDirectories: [path.join(__dirname, "node_modules")]
+    // },
+    // resolveLoader: {
+    //     modulesDirectories: [path.join(__dirname, "node_modules")]
+    // },
     plugins: [
         new HTMLWebpackPlugin({
-            excludeChunks: ['sw'],
+            excludeChunks: ['notify-sw'],
             template: './html-template.ejs'
         }),
         
@@ -50,7 +59,7 @@ module.exports = {
         new webpack.DefinePlugin({
             "CLIENT_CONFIG": JSON.stringify(config.CLIENT_SAFE),
             "VERSION": JSON.stringify(Date.now()),
-            "SERVICE_WORKER_PATH": JSON.stringify("/apps/notify/sw.js")
+            "SERVICE_WORKER_PATH": JSON.stringify("/notify-sw.js")
         })
     ]
 }
@@ -122,7 +131,7 @@ if (process.env.WEBPACK_PUBLISH === 'true') {
     
     module.exports.plugins.push(
       new S3Plugin({
-        
+        exclude: /notify-sw\.js/,
         s3Options: {
             region: 'us-east-1',
             accessKeyId: config.AWS_ACCESS_KEY_ID,
@@ -134,5 +143,18 @@ if (process.env.WEBPACK_PUBLISH === 'true') {
             CacheControl: 'max-age=60, no-transform, public'
         },
         basePath: config.AWS_ROOT_PATH
+    }),
+    new S3Plugin({
+        include: /notify-sw\.js/,
+        s3Options: {
+            region: 'us-east-1',
+            accessKeyId: config.AWS_ACCESS_KEY_ID,
+            secretAccessKey: config.AWS_SECRET_ACCESS_KEY
+        },
+        s3UploadOptions: {
+            Bucket: config.AWS_BUCKET,
+            ACL: config.AWS_ACL,
+            CacheControl: 'max-age=60, no-transform, public'
+        }
     }))
 }

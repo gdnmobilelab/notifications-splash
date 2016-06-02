@@ -42,9 +42,11 @@ export default class NotificationSwitch extends React.Component {
         
         let sampleClass = this.state.notificationsEnabled === "yes" ? "" : "disabled"
         
+        // <button className={sampleClass} onClick={this.runSample} disabled={this.state.notificationsEnabled !== "yes"}>Sample alert</button>
+        
         return <div>
             <button className={buttonClassName} onClick={buttonClick}>{buttonText}</button>
-            <button className={sampleClass} onClick={this.runSample} disabled={this.state.notificationsEnabled !== "yes"}>Sample alert</button>
+            
         </div>
     }
      
@@ -141,7 +143,20 @@ export default class NotificationSwitch extends React.Component {
         })
         .then((sub) => {
             return runServiceWorkerCommand('pushy.subscribeToTopic', {
-                topic: config.TOPIC_ID
+                topic: config.TOPIC_ID,
+                confirmationNotification: [
+                    {
+                        "command": "notification.show",
+                        "options": {
+                            "title": "Subscription confirmed",
+                            "options": {
+                                body: "You have signed up to receive notifications from the Guardian Mobile Innovation Lab.",
+                                icon: "https://www.gdnmobilelab.com/images/mobilelab-logo-thick.png",
+                                tag: "signup-confirmation"
+                            }
+                        }
+                    }
+                ] 
             });
         })
         .catch((err) => {
