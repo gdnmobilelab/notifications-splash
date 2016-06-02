@@ -49,7 +49,8 @@ module.exports = {
         }]),
         new webpack.DefinePlugin({
             "CLIENT_CONFIG": JSON.stringify(config.CLIENT_SAFE),
-            "VERSION": JSON.stringify(Date.now())
+            "VERSION": JSON.stringify(Date.now()),
+            "SERVICE_WORKER_PATH": JSON.stringify("/apps/notify/sw.js")
         })
     ]
 }

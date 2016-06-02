@@ -10,7 +10,7 @@ const contentSwitch = document.getElementById('content-switch');
 const reactContainer = document.getElementById("react-container");
 
 if ('serviceWorker' in navigator) {
-    if (config.SERVICE_WORKER_PATH) {
+    if (SERVICE_WORKER_PATH) {
         navigator.serviceWorker.register(SERVICE_WORKER_PATH);
     } else {
         navigator.serviceWorker.register('./sw.js');
