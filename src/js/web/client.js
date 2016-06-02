@@ -13,6 +13,11 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./sw.js');
 }
 
+window.addEventListener("unhandledrejection", (err) => {
+    // just trying this out
+    console.error(err);
+});
+
 const canRunExperiment = () => {
     
     if (navigator.userAgent.indexOf('Firefox/') > -1) {
