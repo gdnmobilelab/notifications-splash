@@ -1,8 +1,19 @@
 import apiRequest from '../../shared/api-request';
-import ServiceWorkerRun from '../sw-run';
+import runServiceWorkerCommand from 'service-worker-command-bridge/client';
 import SampleCommand from '../sample-command.json';
 import config from '../../shared/config';
 import React from 'react';
+
+const getOrCreateSubscription = function(reg) {
+    return reg.pushManager.getSubscription()
+    .then((sub) => {
+        if (sub !== null) {
+            return sub;
+        }
+        return reg.pushManager.subscribe({userVisibleOnly: true});
+    })
+    
+}
 
 export default class NotificationSwitch extends React.Component {
     
@@ -47,25 +58,28 @@ export default class NotificationSwitch extends React.Component {
     }
     
     runSample() {
-        ServiceWorkerRun("commands", SampleCommand);
+        runServiceWorkerCommand("commandSequence", {sequence: SampleCommand});
     }
 
     
     componentDidMount() {
         
-        return ServiceWorkerRun('get-notification-status')
-            .then((isEnabled) => {
+        return runServiceWorkerCommand('pushy.getSubscribedTopics')
+            .then((topics) => {
                 this.setState({
-                    notificationsEnabled: isEnabled ? 'yes' : 'no'
+                    notificationsEnabled: topics && topics.indexOf(config.TOPIC_ID) > -1 ? 'yes' : 'no'
                 })
             })
             .then(() => {
-                ServiceWorkerRun("analytics", {
+                runServiceWorkerCommand("analytics", {
                     t: 'pageview',
                     dh: window.location.hostname,
                     dp: window.location.pathname,
                     dt: 'Sign up page'
                 })
+            })
+            .catch((err) => {
+                console.error(err)
             })
     }
     
@@ -81,15 +95,18 @@ export default class NotificationSwitch extends React.Component {
             return reg.pushManager.getSubscription()
         })
         .then((sub) => {
-            return ServiceWorkerRun('unsubscribe', sub);
+            return runServiceWorkerCommand('pushy.unsubscribeFromTopic', {
+                topic: config.TOPIC_ID
+            });
         })
         .catch((err) => {
             this.setState({
                 notificationsEnabled: 'yes',
                 animateToggles: true
             });
-            
-            ServiceWorkerRun('analytics', {
+        })
+        .then(() => {
+            return runServiceWorkerCommand('analytics', {
                 t: 'event',
                 ec: 'Subscription',
                 ea: 'unsubscribe'
@@ -120,18 +137,12 @@ export default class NotificationSwitch extends React.Component {
             return navigator.serviceWorker.ready;
         })
         .then((reg) => {
-            
-            return reg.pushManager.getSubscription()
-            .then((sub) => {
-                if (!sub) {
-                    return reg.pushManager.subscribe({userVisibleOnly: true});
-                }
-                return sub;
-            })
+            return getOrCreateSubscription(reg);
         })
         .then((sub) => {
-            return ServiceWorkerRun('subscribe', sub);
-
+            return runServiceWorkerCommand('pushy.subscribeToTopic', {
+                topic: config.TOPIC_ID
+            });
         })
         .catch((err) => {
             this.setState({
@@ -140,7 +151,7 @@ export default class NotificationSwitch extends React.Component {
             })
         })
         .then(() => {
-            ServiceWorkerRun('analytics', {
+            runServiceWorkerCommand('analytics', {
                 t: 'event',
                 ec: 'Subscription',
                 ea: 'subscribe'

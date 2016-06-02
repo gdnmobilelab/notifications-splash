@@ -1,12 +1,12 @@
 [
     {
-        "command": "storeChains",
+        "command": "chains.download",
         "options": {
-            "url": "https://www.gdnmobilelab.com/chains/jobs-chain-1462540064531.json"
+            "url": "/jobs-report.json"
         }
     },
     {
-        "command": "showNotification",
+        "command": "notification.show",
         "options": {
             "title": "The April jobs report is out",
             
@@ -17,7 +17,7 @@
                 "data": {
                     "onTap": [
                         {
-                            "command": "openURL",
+                            "command": "browser.openURL",
                             "options": {
                                 "url": "https://www.theguardian.com/business/2016/may/06/april-jobs-report-us-economy-unemployment-rate"
                             }
@@ -29,7 +29,7 @@
                 {
                     "commands": [
                         {
-                            "command": "notificationFromChain",
+                            "command": "chains.notificationFromChain",
                             "options": {
                                 "chain": "good"
                             }
@@ -43,10 +43,10 @@
                 {
                     "commands": [
                         {
-                            "command": "closeNotification"  
+                            "command": "notification.close"  
                         },
                         {
-                            "command": "notificationFromChain",
+                            "command": "chains.notificationFromChain",
                             "options": {
                                 "chain": "bad"
                             }

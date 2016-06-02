@@ -1,0 +1,421 @@
+[{
+	"chain": "good",
+	"values": [{
+		"title": "Fewer discouraged workers",
+		"notificationTemplate": {
+			"body": "There were 568,000 people who believed there were no jobs out there in April. That’s down by 188,000 from a year before.",
+			"tag": "jobs-report",
+			"icon": "https://www.gdnmobilelab.com/images/mobilelab-logo-thick.png",
+			"data": {
+				"onTap": [{
+					"command": "notification.close"
+				}, {
+					"command": "browser.openURL",
+					"options": {
+						"url": "https://www.theguardian.com/business/2016/may/06/april-jobs-report-us-economy-unemployment-rate"
+					}
+				}]
+			}
+		},
+		"actions": [{
+			"label": "sameChain",
+			"commands": [{
+				"command": "chains.notificationFromChain",
+				"options": {
+					"chain": "good"
+				}
+			}],
+			"template": {
+				"title": "👍 More good news",
+				"tag": "jobs-report"
+			}
+		}, {
+			"label": "switchChain",
+			"switchTo": "bad",
+			"commands": [{
+				"command": "chains.notificationFromChain",
+				"options": {
+					"chain": "bad"
+				}
+			}],
+			"template": {
+				"tag": "jobs-report",
+				"title": "👎 Bad news"
+			}
+		}, {
+			"label": "web-link",
+			"commands": [{
+				"command": "notification.close"
+			}, {
+				"command": "browser.openURL",
+				"options": {
+					"url": "https://www.theguardian.com/business/2016/may/06/april-jobs-report-us-economy-unemployment-rate"
+				}
+			}],
+			"template": {
+				"title": "📰 View article"
+			}
+		}, {
+			"label": "web-link",
+			"commands": [{
+				"command": "notification.close"
+			}, {
+				"command": "browser.openURL",
+				"options": {
+					"url": "https://docs.google.com/forms/d/1G3zMkupK3a5TTzcnVZdi_xzPkhijHTHXVNz9CAFrOiI/viewform?c=0&w=1"
+				}
+			}],
+			"template": {
+				"title": "📋 Take survey"
+			}
+		}]
+	}, {
+		"title": "Interest rates likely to stay low",
+		"notificationTemplate": {
+			"body": "Since the economy added only 160,000 jobs, the Fed could hold off raising interest rates in June. This would give the economy more time to recover, some experts say. ",
+			"tag": "jobs-report",
+			"icon": "https://www.gdnmobilelab.com/images/mobilelab-logo-thick.png",
+			"data": {
+				"onTap": [{
+					"command": "notification.close"
+				}, {
+					"command": "browser.openURL",
+					"options": {
+						"url": "https://www.theguardian.com/business/2016/may/06/april-jobs-report-us-economy-unemployment-rate"
+					}
+				}]
+			}
+		},
+		"actions": [{
+			"label": "sameChain",
+			"commands": [{
+				"command": "chains.notificationFromChain",
+				"options": {
+					"chain": "good"
+				}
+			}],
+			"template": {
+				"title": "👍 More good news",
+				"tag": "jobs-report"
+			}
+		}, {
+			"label": "switchChain",
+			"switchTo": "bad",
+			"commands": [{
+				"command": "chains.notificationFromChain",
+				"options": {
+					"chain": "bad"
+				}
+			}],
+			"template": {
+				"tag": "jobs-report",
+				"title": "👎 Bad news"
+			}
+		}, {
+			"label": "web-link",
+			"commands": [{
+				"command": "notification.close"
+			}, {
+				"command": "browser.openURL",
+				"options": {
+					"url": "https://www.theguardian.com/business/2016/may/06/april-jobs-report-us-economy-unemployment-rate"
+				}
+			}],
+			"template": {
+				"title": "📰 View article"
+			}
+		}, {
+			"label": "web-link",
+			"commands": [{
+				"command": "notification.close"
+			}, {
+				"command": "browser.openURL",
+				"options": {
+					"url": "https://docs.google.com/forms/d/1G3zMkupK3a5TTzcnVZdi_xzPkhijHTHXVNz9CAFrOiI/viewform?c=0&w=1"
+				}
+			}],
+			"template": {
+				"title": "📋 Take survey"
+			}
+		}]
+	}, {
+		"title": "More healthcare workers ",
+		"notificationTemplate": {
+			"body": "In April, healthcare employment rose by 44,000 jobs, with most of the increase occurring in hospitals and ambulatory healthcare services. Over the year, healthcare employment has increased by 502,000 jobs.",
+			"tag": "jobs-report",
+			"icon": "https://www.gdnmobilelab.com/images/mobilelab-logo-thick.png",
+			"data": {
+				"onTap": [{
+					"command": "notification.close"
+				}, {
+					"command": "browser.openURL",
+					"options": {
+						"url": "https://www.theguardian.com/business/2016/may/06/april-jobs-report-us-economy-unemployment-rate"
+					}
+				}]
+			}
+		},
+		"actions": [{
+			"label": "sameChain",
+			"commands": [{
+				"command": "chains.notificationFromChain",
+				"options": {
+					"chain": "good"
+				}
+			}],
+			"template": {
+				"title": "👍 More good news",
+				"tag": "jobs-report"
+			}
+		}, {
+			"label": "switchChain",
+			"switchTo": "bad",
+			"commands": [{
+				"command": "chains.notificationFromChain",
+				"options": {
+					"chain": "bad"
+				}
+			}],
+			"template": {
+				"tag": "jobs-report",
+				"title": "👎 Bad news"
+			}
+		}, {
+			"label": "web-link",
+			"commands": [{
+				"command": "notification.close"
+			}, {
+				"command": "browser.openURL",
+				"options": {
+					"url": "https://www.theguardian.com/business/2016/may/06/april-jobs-report-us-economy-unemployment-rate"
+				}
+			}],
+			"template": {
+				"title": "📰 View article"
+			}
+		}, {
+			"label": "web-link",
+			"commands": [{
+				"command": "notification.close"
+			}, {
+				"command": "browser.openURL",
+				"options": {
+					"url": "https://docs.google.com/forms/d/1G3zMkupK3a5TTzcnVZdi_xzPkhijHTHXVNz9CAFrOiI/viewform?c=0&w=1"
+				}
+			}],
+			"template": {
+				"title": "📋 Take survey"
+			}
+		}]
+	}]
+}, {
+	"chain": "bad",
+	"values": [{
+		"title": "Mining goes under",
+		"notificationTemplate": {
+			"body": "Mining employment continued to decline in April, losing about 7,000 jobs. Since reaching a peak in September 2014, employment in mining has decreased by 191,000 jobs.",
+			"tag": "jobs-report",
+			"icon": "https://www.gdnmobilelab.com/images/mobilelab-logo-thick.png",
+			"data": {
+				"onTap": [{
+					"command": "notification.close"
+				}, {
+					"command": "browser.openURL",
+					"options": {
+						"url": "https://www.theguardian.com/business/2016/may/06/april-jobs-report-us-economy-unemployment-rate"
+					}
+				}]
+			}
+		},
+		"actions": [{
+			"label": "switchChain",
+			"switchTo": "good",
+			"commands": [{
+				"command": "chains.notificationFromChain",
+				"options": {
+					"chain": "good"
+				}
+			}],
+			"template": {
+				"tag": "jobs-report",
+				"title": "👍 Good news"
+			}
+		}, {
+			"label": "sameChain",
+			"commands": [{
+				"command": "chains.notificationFromChain",
+				"options": {
+					"chain": "bad"
+				}
+			}],
+			"template": {
+				"title": "👎 More bad news",
+				"tag": "jobs-report"
+			}
+		}, {
+			"label": "web-link",
+			"commands": [{
+				"command": "notification.close"
+			}, {
+				"command": "browser.openURL",
+				"options": {
+					"url": "https://www.theguardian.com/business/2016/may/06/april-jobs-report-us-economy-unemployment-rate"
+				}
+			}],
+			"template": {
+				"title": "📰 View article"
+			}
+		}, {
+			"label": "web-link",
+			"commands": [{
+				"command": "notification.close"
+			}, {
+				"command": "browser.openURL",
+				"options": {
+					"url": "https://docs.google.com/forms/d/1G3zMkupK3a5TTzcnVZdi_xzPkhijHTHXVNz9CAFrOiI/viewform?c=0&w=1"
+				}
+			}],
+			"template": {
+				"title": "📋 Take survey"
+			}
+		}]
+	}, {
+		"title": "Where is the money?",
+		"notificationTemplate": {
+			"body": "Average hourly earnings went up by just 8 cents. Over the past year, earnings rose by just 2.5%. ",
+			"tag": "jobs-report",
+			"icon": "https://www.gdnmobilelab.com/images/mobilelab-logo-thick.png",
+			"data": {
+				"onTap": [{
+					"command": "notification.close"
+				}, {
+					"command": "browser.openURL",
+					"options": {
+						"url": "https://www.theguardian.com/business/2016/may/06/april-jobs-report-us-economy-unemployment-rate"
+					}
+				}]
+			}
+		},
+		"actions": [{
+			"label": "switchChain",
+			"switchTo": "good",
+			"commands": [{
+				"command": "chains.notificationFromChain",
+				"options": {
+					"chain": "good"
+				}
+			}],
+			"template": {
+				"tag": "jobs-report",
+				"title": "👍 Good news"
+			}
+		}, {
+			"label": "sameChain",
+			"commands": [{
+				"command": "chains.notificationFromChain",
+				"options": {
+					"chain": "bad"
+				}
+			}],
+			"template": {
+				"title": "👎 More bad news",
+				"tag": "jobs-report"
+			}
+		}, {
+			"label": "web-link",
+			"commands": [{
+				"command": "notification.close"
+			}, {
+				"command": "browser.openURL",
+				"options": {
+					"url": "https://www.theguardian.com/business/2016/may/06/april-jobs-report-us-economy-unemployment-rate"
+				}
+			}],
+			"template": {
+				"title": "📰 View article"
+			}
+		}, {
+			"label": "web-link",
+			"commands": [{
+				"command": "notification.close"
+			}, {
+				"command": "browser.openURL",
+				"options": {
+					"url": "https://docs.google.com/forms/d/1G3zMkupK3a5TTzcnVZdi_xzPkhijHTHXVNz9CAFrOiI/viewform?c=0&w=1"
+				}
+			}],
+			"template": {
+				"title": "📋 Take survey"
+			}
+		}]
+	}, {
+		"title": "Uh-oh",
+		"notificationTemplate": {
+			"body": "During February and March, the US economy added 19,000 jobs fewer than originally thought.",
+			"tag": "jobs-report",
+			"icon": "https://www.gdnmobilelab.com/images/mobilelab-logo-thick.png",
+			"data": {
+				"onTap": [{
+					"command": "notification.close"
+				}, {
+					"command": "browser.openURL",
+					"options": {
+						"url": "https://www.theguardian.com/business/2016/may/06/april-jobs-report-us-economy-unemployment-rate"
+					}
+				}]
+			}
+		},
+		"actions": [{
+			"label": "switchChain",
+			"switchTo": "good",
+			"commands": [{
+				"command": "chains.notificationFromChain",
+				"options": {
+					"chain": "good"
+				}
+			}],
+			"template": {
+				"tag": "jobs-report",
+				"title": "👍 Good news"
+			}
+		}, {
+			"label": "sameChain",
+			"commands": [{
+				"command": "chains.notificationFromChain",
+				"options": {
+					"chain": "bad"
+				}
+			}],
+			"template": {
+				"title": "👎 More bad news",
+				"tag": "jobs-report"
+			}
+		}, {
+			"label": "web-link",
+			"commands": [{
+				"command": "notification.close"
+			}, {
+				"command": "browser.openURL",
+				"options": {
+					"url": "https://www.theguardian.com/business/2016/may/06/april-jobs-report-us-economy-unemployment-rate"
+				}
+			}],
+			"template": {
+				"title": "📰 View article"
+			}
+		}, {
+			"label": "web-link",
+			"commands": [{
+				"command": "notification.close"
+			}, {
+				"command": "browser.openURL",
+				"options": {
+					"url": "https://docs.google.com/forms/d/1G3zMkupK3a5TTzcnVZdi_xzPkhijHTHXVNz9CAFrOiI/viewform?c=0&w=1"
+				}
+			}],
+			"template": {
+				"title": "📋 Take survey"
+			}
+		}]
+	}]
+}]

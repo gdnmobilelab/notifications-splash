@@ -48,7 +48,8 @@ module.exports = {
             from: 'static'
         }]),
         new webpack.DefinePlugin({
-            "CLIENT_CONFIG": JSON.stringify(config.CLIENT_SAFE)
+            "CLIENT_CONFIG": JSON.stringify(config.CLIENT_SAFE),
+            "VERSION": JSON.stringify(Date.now())
         })
     ]
 }

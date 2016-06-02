@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'whatwg-fetch';
-import ServiceWorkerRun from './sw-run';
+import runServiceWorkerCommand from 'service-worker-command-bridge/client';
 import Buttons from './components/buttons';
 import '../../scss/main.scss';
+import config from '../shared/config';
 
 const contentSwitch = document.getElementById('content-switch');
 const reactContainer = document.getElementById("react-container");
@@ -14,13 +15,18 @@ if ('serviceWorker' in navigator) {
 
 const canRunExperiment = () => {
     
+    if (navigator.userAgent.indexOf('Firefox/') > -1) {
+        // ff bug means this doesn't work: https://bugzilla.mozilla.org/show_bug.cgi?id=1228723
+        return Promise.resolve(false);
+    }
+    
     // If we don't have notifications or service workers, we can't proceed.
     if (!window.Notification || !window.Notification.requestPermission || !navigator.serviceWorker) {
         return Promise.resolve(false);
     }
     
     // We also need to check whether our service worker supports payloads in notifications (i.e. is >= Chrome 50)
-    return ServiceWorkerRun('capability-check');
+    return runServiceWorkerCommand('capability-check');
 }
 
 canRunExperiment()
