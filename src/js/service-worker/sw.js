@@ -8,6 +8,9 @@ import PromiseTools from 'promise-tools';
 analytics.setAnalyticsID(config.GA_ID);
 
 notificationCommands.setConfig({
+    poll: {
+        key: config.POLL_API_KEY
+    },
     pushy: {
         key: config.API_KEY,
         host: config.API_HOST
