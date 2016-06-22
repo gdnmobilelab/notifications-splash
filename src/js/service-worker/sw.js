@@ -9,7 +9,8 @@ analytics.setAnalyticsID(config.GA_ID);
 
 notificationCommands.setConfig({
     poll: {
-        key: config.POLL_API_KEY
+        key: config.POLL_API_KEY,
+        host: config.POLL_API_HOST
     },
     pushy: {
         key: config.API_KEY,
