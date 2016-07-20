@@ -21,7 +21,7 @@ if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register(SERVICE_WORKER_PATH)
         .catch((err) => console.log(err))
     } else {
-        navigator.serviceWorker.register('./sw.js');
+        navigator.serviceWorker.register('/notify-sw.js');
     }
     
 }

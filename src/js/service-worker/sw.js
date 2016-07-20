@@ -3,19 +3,20 @@ import './take-control';
 import swBridge from 'service-worker-command-bridge/service-worker';
 import config from '../shared/config';
 import notificationCommands from 'notification-commands';
-import PromiseTools from 'promise-tools';
 
 analytics.setAnalyticsID(config.GA_ID);
 
 notificationCommands.setConfig({
-    poll: {
-        key: config.POLL_API_KEY
+    ballot: {
+        key: config.ballot.API_KEY,
+        host: config.ballot.API_HOST
     },
     pushy: {
-        key: config.API_KEY,
-        host: config.API_HOST
+        key: config.pushy.API_KEY,
+        host: config.pushy.API_HOST
     }
-})
+});
+
 notificationCommands.register(swBridge);
 
 swBridge.bind("capability-check", () => {

@@ -3,5 +3,5 @@
   "short_name": "Push Demo", 
   "start_url": "/index.html?homescreen=1",  
   "display": "standalone",  
-  "gcm_sender_id": "821544533366"
+  "gcm_sender_id": "252975552879"
 }
