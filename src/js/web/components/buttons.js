@@ -1,19 +1,7 @@
 import apiRequest from '../../shared/api-request';
-import runServiceWorkerCommand from 'service-worker-command-bridge/client';
 import SampleCommand from '../sample-command.json';
 import config from '../../shared/config';
 import React from 'react';
-
-const getOrCreateSubscription = function(reg) {
-    return reg.pushManager.getSubscription()
-    .then((sub) => {
-        if (sub !== null) {
-            return sub;
-        }
-        return reg.pushManager.subscribe({userVisibleOnly: true});
-    })
-    
-}
 
 export default class NotificationSwitch extends React.Component {
     
@@ -83,94 +71,5 @@ export default class NotificationSwitch extends React.Component {
             .catch((err) => {
                 console.error(err)
             })
-    }
-    
-
-    
-    unsubscribe() {
-        this.setState({
-            notificationsEnabled: 'no',
-            animateToggles: true
-        })
-        return navigator.serviceWorker.ready
-        .then((reg) => {
-            return reg.pushManager.getSubscription()
-        })
-        .then((sub) => {
-            return runServiceWorkerCommand('pushy.unsubscribeFromTopic', {
-                topic: config.TOPIC_ID
-            });
-        })
-        .catch((err) => {
-            this.setState({
-                notificationsEnabled: 'yes',
-                animateToggles: true
-            });
-        })
-        .then(() => {
-            return runServiceWorkerCommand('analytics', {
-                t: 'event',
-                ec: 'Subscription',
-                ea: 'unsubscribe'
-            });
-        })
-        
-    }
-    
-    subscribe() {
-        new Promise((fulfill, reject) => {
-            if (window.Notification.permission === 'granted') {
-                return fulfill(true);
-            }
-            Notification.requestPermission((status) => {
-                if (status === 'granted') {
-                    return fulfill(true);
-                }
-                reject(new Error(status))
-            })
-        })
-        .then(() => {
-            
-            this.setState({
-                notificationsEnabled: 'yes',
-                animateToggles: true
-            })
-           
-            return navigator.serviceWorker.ready;
-        })
-        .then((reg) => {
-            return getOrCreateSubscription(reg);
-        })
-        .then((sub) => {
-            return runServiceWorkerCommand('pushy.subscribeToTopic', {
-                topic: config.TOPIC_ID,
-                confirmationNotification: [
-                    {
-                        "command": "notification.show",
-                        "options": {
-                            "title": "Subscription confirmed",
-                            "options": {
-                                body: "You have signed up to receive notifications from the Guardian Mobile Innovation Lab.",
-                                icon: "https://www.gdnmobilelab.com/images/mobilelab-logo-thick.png",
-                                tag: "signup-confirmation"
-                            }
-                        }
-                    }
-                ] 
-            });
-        })
-        .catch((err) => {
-            this.setState({
-                notificationsEnabled: 'no',
-                animateToggles: true
-            })
-        })
-        .then(() => {
-            runServiceWorkerCommand('analytics', {
-                t: 'event',
-                ec: 'Subscription',
-                ea: 'subscribe'
-            });
-        })
     }
 };

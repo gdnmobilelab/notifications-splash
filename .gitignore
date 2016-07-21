@@ -4,3 +4,4 @@ dist/*
 tmp/*
 config/*
 .idea
+npm-debug.log

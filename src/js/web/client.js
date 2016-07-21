@@ -2,9 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'whatwg-fetch';
 import runServiceWorkerCommand from 'service-worker-command-bridge/client';
-import Buttons from './components/buttons';
+import CountryCompetitionContainer from './components/country-competition-container';
 import '../../scss/main.scss';
 import config from '../shared/config';
+import countries from './country-list';
 
 const contentSwitch = document.getElementById('content-switch');
 const reactContainer = document.getElementById("react-container");
@@ -65,8 +66,8 @@ canRunExperiment()
         ga('send', 'pageview');
         
     } else {
-        ReactDOM.render(React.createElement(Buttons), reactContainer); 
+        ReactDOM.render(<CountryCompetitionContainer countries={countries}/> , reactContainer);
     }
     
     contentSwitch.className = className;
-})
+});
