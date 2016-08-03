@@ -30,7 +30,9 @@ export default class ToggleComponent extends React.Component {
                 inputClass += ' disabled';
             }
 
-            var toggleText = <div className={toggleTextClass} dangerouslySetInnerHTML={{__html: button.name}}></div>;
+            var toggleText = <div className={toggleTextClass}>
+                {button.name}
+            </div>;
             if (recommended) {
                 toggleTextClass += ' recommended';
                 toggleText = <div className={toggleTextClass}>

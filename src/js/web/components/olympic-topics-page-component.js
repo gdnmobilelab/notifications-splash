@@ -28,20 +28,20 @@ class OlympicsTopicsPageComponent extends React.Component {
         return (
             <div>
                 <p>Throughout the Olympics, we’ll be sending experimental notifications.</p>
-                <p>Opt-in below by tapping the toggle.</p>
+                <p><strong>Sign up below by tapping the toggle.</strong></p>
                 <TopicComponent
                     picks={this.state.subscribedTopics.filter((c) => c === 'olympics_notifications')}
                     topics={[
                         {
                             id: 'olympics_notifications',
-                            name: '<strong>Sign up</strong> for daily medal counts, news quizzes and a live morale meter during big events.'
+                            name: 'Get daily medal counts, news quizzes and a live morale meter during big events.'
                         }
                     ]}
                     onPick={this.addToSubscribedTopics.bind(this)}
                     onRemovePick={this.removeFromSubscribedTopics.bind(this)}
                     enabled={this.state.enabled}
                 />
-                <p><strong>Sign up</strong> for real-time medal notifications for up to three countries. Note: includes SPOILERS!</p>
+                <p>Get real-time medal notifications for up to three countries. Note: includes SPOILERS!</p>
                 <CountryCompetitionContainer
                     picks={this.state.subscribedTopics}
                     enabled={this.state.enabled}
