@@ -1,89 +1,110 @@
 import React from 'react';
-import ToggleContainer from './toggle-container';
-import runServiceWorkerCommand from 'service-worker-command-bridge/client';
-import SubscriptionService from '../services/SubscriptionService';
+import TopicComponent from './topic-component';
+import LocationService from '../services/GeoJSONLocationService';
+import countries from '../country-list';
 
 class CountryCompetitionContainer extends React.Component {
 
     constructor(props) {
-        super();
+        super(props);
+
         this.state = {
-            picks: [],
-            enabled: false,
-            countries: props.countries
-        };
+            countries: countries,
+            topics: countries,
+            enabled: false
+        }
     }
 
     search(e) {
-        var re;
-        this.setState({countries: this.props.countries.filter((country) => {
-            re = new RegExp(e.target.value,"gi");
-            return country.name.search(re) !== -1 || country.id.search(re) !== -1
-        })});
+        var re,
+            filteredTopics = this.state.countries.filter((topic) => {
+                re = new RegExp(e.target.value,"gi");
+                return topic.name.search(re) !== -1 || topic.id.search(re) !== -1
+            }),
+            topicsWithoutPicks = filteredTopics.filter((topic) => {
+                return this.props.picks.indexOf(topic.id) < 0
+            }),
+            picks = this.state.countries.filter((topic) => {
+                return this.props.picks.indexOf(topic.id) >= 0
+            }),
+            combined = [].concat(picks).concat(topicsWithoutPicks);
+
+        this.setState({topics: combined});
     }
 
-    pick(country) {
-        if (this.state.picks.find((pick) => pick.id === country.id)) {
-            this.setState({picks: this.state.picks.filter((pick) => pick.id !== country.id)});
-            SubscriptionService.unsubscribe(country.id)
-                .then((success) => {
-                }).catch((error) => {
-                console.error(error);
-                //Implement error handling here.
-            })
-        } else {
-            this.setState({picks: this.state.picks.concat([country])})
-            SubscriptionService.subscribe(country.id)
-                .then((success) => {
+    componentWillReceiveProps(props) {
+        //Oof.
+        if (props.enabled && !this.state.enabled) {
+            //Avoiding a race condition by placing this here
+            //instead of componentDidMount (the component may have mounted but we async call for
+            //topics, so they may not have been passed to the component at the time of mounting).
+            let countriesWithoutPicks = this.state.countries.filter((topic) => {
+                return props.picks.indexOf(topic.id) < 0
+            }),
+                picks = this.state.countries.filter((topic) => {
+                    return props.picks.indexOf(topic.id) >= 0
+                }),
+                combined = [].concat(picks).concat(countriesWithoutPicks);
 
-                }).catch((error) => {
-                console.error(error);
-                //Implement error handling here.
-            });
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        let coords = {
+                            longitude: position.coords.longitude,
+                            latitude: position.coords.latitude
+                        };
+
+                        LocationService.locationId(coords.latitude, coords.longitude)
+                            .then((locationId) => {
+                                let currentCountries = this.state.countries.map((c) => {
+                                        if (c.locationId === locationId) {
+                                            c.recommended = true;
+                                        }
+
+                                        return c;
+                                    }),
+                                    currentTopics = this.state.topics.map((c) => {
+                                        if (c.locationId === locationId) {
+                                            c.recommended = true;
+                                        }
+
+                                        return c;
+                                    });
+
+                                this.setState(Object.assign({}, this.state, {topics: currentTopics, countries: currentCountries}));
+                            })
+                    }.bind(this));
+            }
+
+            this.setState(Object.assign({}, this.state, {topics: combined, countries: combined, enabled: true}));
         }
     }
 
     render() {
+        let recommended = this.state.topics.find((topic) => topic.recommended);
+        let recommendedFirst = this.state.topics.filter((topic) => !topic.recommended);
+
+        if (recommended) {
+            recommendedFirst.unshift(recommended);
+        }
+
         return (
-            <div>
-                <input type="text" className="search" placeholder="Search for country" onChange={this.search.bind(this)} />
-                <ToggleContainer
-                    enabled={this.state.enabled}
-                    buttons={this.state.countries}
-                    selected={this.state.picks}
-                    disabled={this.state.disabled}
-                    onClick={this.pick.bind(this)} />
-            </div>
+            <TopicComponent
+                picks={this.props.picks.filter((p) => countries.find((c) => c.id === p))}
+                topics={recommendedFirst}
+                enabled={this.props.enabled}
+                search={{
+                    placeholder: "Search for country",
+                    onSearch: this.search.bind(this)
+                }}
+                onPick={this.props.onPick}
+                onRemovePick={this.props.onRemovePick}
+            />
         )
     }
 
     componentDidMount() {
-        return runServiceWorkerCommand('pushy.getSubscribedTopics')
-            .then((topics) => {
-                let picks = this.props.countries.filter((country) => topics.indexOf(country.id) !== -1);
-                let countries = this.props.countries.filter((country) => !(picks.find((s) => s.id == country.id)));
 
-                picks.forEach((selected) => {
-                    countries.unshift(selected);
-                });
-
-                this.setState({
-                    enabled: true,
-                    picks: picks,
-                    countries: countries
-                });
-            })
-            .then(() => {
-                runServiceWorkerCommand("analytics", {
-                    t: 'pageview',
-                    dh: window.location.hostname,
-                    dp: window.location.pathname,
-                    dt: 'Sign up page'
-                })
-            })
-            .catch((err) => {
-                console.error(err)
-            })
     }
 }
 

@@ -26,9 +26,15 @@ module.exports = {
                 test: /\.js$/,
                 include: [
                     path.join(__dirname, 'src', 'js'),
-                    /sw-mini-libraries/
+                    /sw-mini-libraries/,
+                    path.join(__dirname, 'node_modules', 'google-analytics-protocol'),
+                    path.join(__dirname, 'node_modules', 'service-worker-command-bridge'),
+                    path.join(__dirname, 'node_modules', 'notification-commands')
                 ],
-                loader: 'babel-loader'
+                loader: 'babel',
+                query: {
+                    presets: ['es2015']
+                }
             },
              {
                 test: /\.json$/,
@@ -120,7 +126,7 @@ if (process.env.NODE_ENV === 'production') {
         loader: ExtractTextPlugin.extract('style-loader', ['css-loader', 'sass-loader'])
     });
     
-    module.exports.plugins.push(new ExtractTextPlugin("styles.css"));
+    module.exports.plugins.push(new ExtractTextPlugin(`styles.css?_${Date.now()}`));
     
     
 }
