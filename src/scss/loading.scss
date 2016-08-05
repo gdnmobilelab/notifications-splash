@@ -1,0 +1,152 @@
+.loading {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000000140;
+  background-image: linear-gradient(to top, #fff, rgba(255,255,255,0.9))
+}
+
+.projects__logo {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  margin: auto;
+  fill: #005689;
+}
+
+ol, ul {
+  list-style: none; }
+
+.button {
+  position: relative;
+  display: inline-block;
+  margin: auto;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  padding: 4px; }
+.button:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  z-index: 1;
+  content: ''; }
+.button:hover:before {
+  background-color: rgba(0, 0, 0, 0.2); }
+
+.button__icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  margin: auto;
+  max-width: 22px;
+  max-height: 22px; }
+
+.projects--1 {
+  height: 228px;
+  width: 180px; }
+
+.projects__atom {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto; }
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateX(150px) rotate(0deg); }
+  to {
+    transform: rotate(360deg) translateX(150px) rotate(-360deg); } }
+
+.projects__atom-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  background-color: #005689;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform; }
+
+.projects__atom-title {
+  position: absolute;
+  top: 6px;
+  left: 38px;
+  width: 140px; }
+
+.projects__atom-trail {
+  width: 100%;
+  height: 100%; }
+
+@keyframes maskOrbit {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(-360deg); } }
+
+@keyframes titleOrbit {
+  0% {
+    transform: translate(-60%, 40px); }
+  25% {
+    transform: translate(0%, 0px); }
+  50% {
+    transform: translate(-60%, -40px); }
+  75% {
+    transform: translate(-130%, 0%); }
+  100% {
+    transform: translate(-60%, 40px); } }
+
+.projects__atom-mask {
+  transform-origin: top center;
+  animation-name: maskOrbit;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite; }
+
+@keyframes orbit-1 {
+  from {
+    transform: rotate(0deg) translateX(84px) rotate(0deg); }
+  to {
+    transform: rotate(-360deg) translateX(84px) rotate(360deg); } }
+
+.projects--1 {
+  height: 228px;
+  width: 180px; }
+
+.projects__atom--1 {
+  width: 180px;
+  height: 180px; }
+.projects__atom--1 .projects__atom-mask,
+.projects__atom--1 .projects__atom-button {
+  animation-duration: 24s; }
+@media (min-width: 61.25em) {
+  .projects__atom--1 .projects__atom-mask,
+  .projects__atom--1 .projects__atom-button {
+    animation-duration: 8s; } }
+.projects__atom--1 .projects__atom-button {
+  animation-name: orbit-1; }
+.projects__atom--1 .projects__atom-mask,
+.projects__atom--1 .projects__atom-button {
+  animation-delay: -10s; }
+.projects__atom--1 .projects__atom-trail circle {
+  stroke-width: 2;
+  stroke-dasharray: 0.1, 6.2; }

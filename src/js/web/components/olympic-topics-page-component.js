@@ -2,7 +2,8 @@ import React from 'react';
 import runServiceWorkerCommand from 'service-worker-command-bridge/client';
 import TopicComponent from './topic-component';
 import CountryCompetitionContainer from './country-competition-container';
-
+import config from '../../shared/config';
+import Loading from './loading-component';
 
 class OlympicsTopicsPageComponent extends React.Component {
     constructor(props) {
@@ -25,15 +26,17 @@ class OlympicsTopicsPageComponent extends React.Component {
 
 
     render() {
+        var showLoading = !this.state.enabled ? <Loading /> : '';
+
         return (
             <div>
-                <p>Throughout the Olympics, we’ll be sending experimental notifications.</p>
+                <p>Throughout the Rio 2016 Olympics, we’ll be sending experimental notifications.</p>
                 <p><strong>Sign up below by tapping the toggle.</strong></p>
                 <TopicComponent
                     picks={this.state.subscribedTopics.filter((c) => c === 'olympics_notifications')}
                     topics={[
                         {
-                            id: 'olympics_notifications',
+                            id: config.TOPIC_ID,
                             name: 'Get daily medal counts, news quizzes and a live morale meter during big events.'
                         }
                     ]}
@@ -48,6 +51,7 @@ class OlympicsTopicsPageComponent extends React.Component {
                     onPick={this.addToSubscribedTopics.bind(this)}
                     onRemovePick={this.removeFromSubscribedTopics.bind(this)}
                 />
+                {showLoading}
             </div>
         )
     }

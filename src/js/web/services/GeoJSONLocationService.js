@@ -14,7 +14,9 @@ class GeoJSONLocationService {
                         return response;
                     } else {
                         return fetch(request).then((resp) => {
-                            return cache.put(request, resp)
+                            var toReturn = resp.clone();
+                            cache.put(request, resp);
+                            return toReturn;
                         })
                     }
                 }).catch(function (error) {

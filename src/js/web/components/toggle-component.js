@@ -47,7 +47,7 @@ export default class ToggleComponent extends React.Component {
                     {toggleText}
                     <div className="toggle">
                         <div className="toggle-floater">
-                            <input checked={isPicked} disabled={isDisabled} id={buttonId} className={buttonClass} type="checkbox" onClick={this.props.onClick.bind(this, button)} />
+                            <input checked={isPicked} disabled={isDisabled} id={buttonId} className={buttonClass} type="checkbox" onChange={this.props.onClick.bind(this, button)} />
                             <label htmlFor={buttonId} className={inputClass}></label>
                         </div>
                     </div>

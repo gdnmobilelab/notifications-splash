@@ -27,6 +27,13 @@ class TopicComponent extends React.Component {
         }
     }
 
+    blurSearch(e) {
+        if(e.which == 13) {
+            e.target.blur();
+            return false; // returning false will prevent the event from bubbling up.
+        }
+    }
+
     render() {
         var searchBar = '',
             description = '';
@@ -34,7 +41,7 @@ class TopicComponent extends React.Component {
         if (this.props.search) {
             searchBar =
                 <div className="toggle-container">
-                    <input type="text" className="search" placeholder={this.props.search.placeholder} onChange={this.props.search.onSearch.bind(this)} />
+                    <input type="search" onKeyPress={this.blurSearch.bind(this)} className="search" placeholder={this.props.search.placeholder} onChange={this.props.search.onSearch.bind(this)} />
                 </div>
         }
 

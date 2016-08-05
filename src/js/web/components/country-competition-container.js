@@ -3,7 +3,8 @@ import TopicComponent from './topic-component';
 import LocationService from '../services/GeoJSONLocationService';
 import countries from '../country-list';
 
-class CountryCompetitionContainer extends React.Component {
+class
+CountryCompetitionContainer extends React.Component {
 
     constructor(props) {
         super(props);
@@ -11,7 +12,8 @@ class CountryCompetitionContainer extends React.Component {
         this.state = {
             countries: countries,
             topics: countries,
-            enabled: false
+            enabled: false,
+            search: '',
         }
     }
 
@@ -27,9 +29,19 @@ class CountryCompetitionContainer extends React.Component {
             picks = this.state.countries.filter((topic) => {
                 return this.props.picks.indexOf(topic.id) >= 0
             }),
-            combined = [].concat(picks).concat(topicsWithoutPicks);
+            combined = [];
+            if (e.target.value !== '') {
+                combined = combined.concat(topicsWithoutPicks)
+                            .concat(picks)
+                            .concat(this.state.countries.filter((topic) => {
+                                return !filteredTopics.find((t) => t.id === topic.id);
+                            }));
+            } else {
+                combined = combined.concat(picks).concat(topicsWithoutPicks);
+            }
 
-        this.setState({topics: combined});
+
+        this.setState({topics: combined, search: e.target.value});
     }
 
     componentWillReceiveProps(props) {
@@ -82,9 +94,10 @@ class CountryCompetitionContainer extends React.Component {
 
     render() {
         let recommended = this.state.topics.find((topic) => topic.recommended);
-        let recommendedFirst = this.state.topics.filter((topic) => !topic.recommended);
+        let recommendedFirst = this.state.topics;
 
-        if (recommended) {
+        if (recommended && this.state.search === '') {
+            recommendedFirst = recommendedFirst.filter((topic) => !topic.recommended);
             recommendedFirst.unshift(recommended);
         }
 
