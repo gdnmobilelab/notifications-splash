@@ -20,10 +20,10 @@ export default class ToggleComponent extends React.Component {
             let isDisabled = false;
             let buttonId = `cmn-toggle-${button.id}`;
 
-            if (this.props.selected.length >= 3 && !isPicked) {
-                inputClass += ' disabled';
-                isDisabled = true;
-            }
+            // if (this.props.selected.length >= 3 && !isPicked) {
+            //     inputClass += ' disabled';
+            //     isDisabled = true;
+            // }
 
             if (!this.props.enabled) {
                 isDisabled = true;

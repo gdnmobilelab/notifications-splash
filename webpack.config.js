@@ -55,6 +55,7 @@ module.exports = {
     // },
     plugins: [
         new HTMLWebpackPlugin({
+            hash: true,
             excludeChunks: ['notify-sw'],
             template: './html-template.ejs'
         }),

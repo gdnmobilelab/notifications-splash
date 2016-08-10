@@ -84,6 +84,8 @@ CountryCompetitionContainer extends React.Component {
                                     });
 
                                 this.setState(Object.assign({}, this.state, {topics: currentTopics, countries: currentCountries}));
+                            }).catch((err) => {
+                                console.log(err)
                             })
                     }.bind(this));
             }

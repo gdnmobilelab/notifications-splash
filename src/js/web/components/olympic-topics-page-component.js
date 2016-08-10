@@ -37,14 +37,14 @@ class OlympicsTopicsPageComponent extends React.Component {
                     topics={[
                         {
                             id: config.TOPIC_ID,
-                            name: 'Get daily medal counts, news quizzes and a live morale meter during big events.'
+                            name: 'Get a daily leaderboard, news quizzes and a live morale meter during big events.'
                         }
                     ]}
                     onPick={this.addToSubscribedTopics.bind(this)}
                     onRemovePick={this.removeFromSubscribedTopics.bind(this)}
                     enabled={this.state.enabled}
                 />
-                <p>Get real-time medal notifications for up to three countries. Note: includes SPOILERS!</p>
+                <p>Get real-time medal notifications for countries you want to follow. Note: includes SPOILERS!</p>
                 <CountryCompetitionContainer
                     picks={this.state.subscribedTopics}
                     enabled={this.state.enabled}

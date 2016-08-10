@@ -21,6 +21,7 @@ class GeoJSONLocationService {
                     }
                 }).catch(function (error) {
                     console.log(error);
+                    return fetch(request);
                 });
             })
         } else {
