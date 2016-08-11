@@ -2,61 +2,21 @@
     {
         "command": "chains.download",
         "options": {
-            "url": "/jobs-report.json"
+            "url": "https://www.gdnmobilelab.com/chains/rio-2016-olympics-quiz-2016-09-08.json"
         }
     },
     {
-        "command": "notification.show",
+        "command": "context.set",
         "options": {
-            "title": "The April jobs report is out",
-            
-            "options": {
-                "tag": "jobs-report",
-                "body": "US economy added 160,000 jobs in April as the unemployment rate remained unchanged at 5%.\n\nNow, do you want the good news or bad news first?",
-                "icon": "https://www.gdnmobilelab.com/images/mobilelab-logo-thick.png",
-                "data": {
-                    "onTap": [
-                        {
-                            "command": "browser.openURL",
-                            "options": {
-                                "url": "https://www.theguardian.com/business/2016/may/06/april-jobs-report-us-economy-unemployment-rate"
-                            }
-                        }
-                    ]
-                }
-            },
-            "actionCommands": [
-                {
-                    "commands": [
-                        {
-                            "command": "chains.notificationFromChain",
-                            "options": {
-                                "chain": "good"
-                            }
-                        }
-                        
-                    ],
-                    "template": {
-                        "title": "👍 Good news"
-                    }
-                },
-                {
-                    "commands": [
-                        {
-                            "command": "notification.close"  
-                        },
-                        {
-                            "command": "chains.notificationFromChain",
-                            "options": {
-                                "chain": "bad"
-                            }
-                        }
-                    ],
-                    "template": {
-                        "title": "👎 Bad news"
-                    }
-                }
-            ]
+            "context": {
+                "swapNotificationActions": "{{randomBool}}"
+            }
+        }
+    },
+    {
+        "command": "chains.notificationFromChain",
+        "options": {
+            "chain": "rio-olympics-quiz-2016"
         }
     }
 ]
