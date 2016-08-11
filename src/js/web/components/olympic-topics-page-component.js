@@ -51,7 +51,7 @@ class OlympicsTopicsPageComponent extends React.Component {
                     onRemovePick={this.removeFromSubscribedTopics.bind(this)}
                     enabled={this.state.enabled}
                 />
-                <button onClick={this.runSample}>Take our Olympics quiz</button>
+                <button onClick={this.runSample}>Take the latest Olympics quiz</button>
                 <p>Get real-time medal notifications for countries you want to follow. Note: includes SPOILERS!</p>
                 <CountryCompetitionContainer
                     picks={this.state.subscribedTopics}
