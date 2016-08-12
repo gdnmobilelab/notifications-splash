@@ -1,8 +1,11 @@
 [
     {
+        "command": "update"
+    },
+    {
         "command": "chains.download",
         "options": {
-            "url": "https://www.gdnmobilelab.com/chains/rio-2016-olympics-quiz-2016-09-08.json"
+            "url": "https://www.gdnmobilelab.com/chains/prod-olympics-quiz-notification-aug-12-2016-5.json"
         }
     },
     {
