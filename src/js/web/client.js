@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'whatwg-fetch';
 import runServiceWorkerCommand from 'service-worker-command-bridge/client';
-import OlympicsTopicsPageComponent from './components/olympic-topics-page-component';
+import OlympicsTopicsPageComponent from './components/topics-page-component';
 import '../../scss/main.scss';
 import config from '../shared/config';
-import countries from './country-list';
+import countries from './topic-list';
 
 const contentSwitch = document.getElementById('content-switch');
 const reactContainer = document.getElementById("react-container");
