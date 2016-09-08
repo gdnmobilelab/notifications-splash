@@ -35,17 +35,17 @@ class OlympicsTopicsPageComponent extends React.Component {
         return (
             <div>
                 {showError}
-                <p><strong>Current notification subscriptions</strong></p>
+                <h2 style={{fontSize: "28px", fontWeight: "bold", color: "#333"}}>Demo Day</h2>
+                <p>Tap the toggle below to follow along with the demo!</p>
                 <MultiTopicContainer
                     picks={this.state.subscribedTopics}
                     enabled={this.state.enabled}
                     onPick={this.addToSubscribedTopics.bind(this)}
                     onRemovePick={this.removeFromSubscribedTopics.bind(this)}
                 />
-                <p><strong>Recently expired notifications</strong></p>
-                <p style={{"color": "#999", "margin": "0.2em"}}>Orlando shootings</p>
-                <p style={{"color": "#999", "margin": "0.2em"}}>Istanbul airport attack</p>
-                <p style={{"color": "#999", "margin": "0.2em"}}>Super Bowl 2016</p>
+                <p style={{color: "rgb(153, 153, 153)"}}>
+                    Learn more about the Guardian Mobile Innovation Lab and our past and future experiments on <a href="https://medium.com/the-guardian-mobile-innovation-lab">Medium</a>.
+                </p>
                 {showLoading}
             </div>
         )
