@@ -1,3 +1,3 @@
 export default [
-    {"name":"Hacks/Hackers 📰","id":"hacks_hackers"}
+    {"name":"Presidential Debates","id":"presidential_debates"}
 ]

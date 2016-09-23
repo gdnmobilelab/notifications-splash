@@ -35,7 +35,7 @@ class OlympicsTopicsPageComponent extends React.Component {
         return (
             <div>
                 {showError}
-                <h2 style={{fontSize: "28px", fontWeight: "bold", color: "#333"}}>Demo Day</h2>
+                <h2 style={{fontSize: "28px", fontWeight: "bold", color: "#333"}}>Presidential Debates</h2>
                 <p>Tap the toggle below to follow along with the demo!</p>
                 <MultiTopicContainer
                     picks={this.state.subscribedTopics}
