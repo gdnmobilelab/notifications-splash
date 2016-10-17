@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'whatwg-fetch';
 import runServiceWorkerCommand from 'service-worker-command-bridge/client';
-import OlympicsTopicsPageComponent from './components/topics-page-component';
+import TopicsPageComponent from './components/topics-page-component';
 import '../../scss/main.scss';
 import config from '../shared/config';
 import countries from './topic-list';
@@ -66,7 +66,7 @@ canRunExperiment()
         ga('send', 'pageview');
         
     } else {
-        ReactDOM.render(<OlympicsTopicsPageComponent /> , reactContainer);
+        ReactDOM.render(<TopicsPageComponent /> , reactContainer);
     }
     
     contentSwitch.className = className;

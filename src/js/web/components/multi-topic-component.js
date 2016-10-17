@@ -2,8 +2,7 @@ import React from 'react';
 import TopicComponent from './topic-component';
 import topics from '../topic-list';
 
-class
-TopicsContainer extends React.Component {
+class MultiTopicComponent extends React.Component {
 
     constructor(props) {
         super(props);
@@ -86,4 +85,4 @@ TopicsContainer extends React.Component {
     }
 }
 
-export default TopicsContainer
+export default MultiTopicComponent

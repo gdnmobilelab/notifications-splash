@@ -1,10 +1,10 @@
 import React from 'react';
 import runServiceWorkerCommand from 'service-worker-command-bridge/client';
-import MultiTopicContainer from './multi-topic-container';
+import MultiTopicContainer from './multi-topic-component';
 import Loading from './loading-component';
 import SampleCommand from '../sample-command.json';
 
-class OlympicsTopicsPageComponent extends React.Component {
+class TopicsPageComponent extends React.Component {
     constructor(props) {
         super(props);
 
@@ -64,4 +64,4 @@ class OlympicsTopicsPageComponent extends React.Component {
     }
 }
 
-export default OlympicsTopicsPageComponent
+export default TopicsPageComponent
