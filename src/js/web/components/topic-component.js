@@ -1,6 +1,5 @@
 import React from 'react';
 import ToggleComponent from './toggle-component';
-import SubscriptionService from '../services/SubscriptionService';
 
 class TopicComponent extends React.Component {
 
@@ -11,19 +10,8 @@ class TopicComponent extends React.Component {
     pick(topic) {
         if (this.props.picks.find((pick) => pick === topic.id)) {
             this.props.onRemovePick(topic.id);
-            SubscriptionService.unsubscribe(topic.id)
-                .catch((error) => {
-                    this.props.onPick(topic.id);
-                    console.error(error);
-                })
         } else {
             this.props.onPick(topic.id);
-            SubscriptionService.subscribe(topic.id)
-                .catch((error) => {
-                    console.error(error);
-                    this.props.onRemovePick(topic.id);
-                    //Implement error handling here.
-                 });
         }
     }
 

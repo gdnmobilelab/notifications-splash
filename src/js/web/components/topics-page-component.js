@@ -3,6 +3,7 @@ import runServiceWorkerCommand from 'service-worker-command-bridge/client';
 import MultiTopicContainer from './multi-topic-component';
 import Loading from './loading-component';
 import SampleCommand from '../sample-command.json';
+import SubscriptionService from '../services/SubscriptionService';
 
 class TopicsPageComponent extends React.Component {
     constructor(props) {
@@ -15,13 +16,30 @@ class TopicsPageComponent extends React.Component {
         }
     }
 
-    addToSubscribedTopics(topic) {
-        this.setState({subscribedTopics: this.state.subscribedTopics.concat([topic])});
+    setUnsubscribe(topicId) {
+        let subscribedTopics = this.state.subscribedTopics.filter((t) => t !== topicId);
+        this.setState({subscribedTopics: subscribedTopics});
     }
 
-    removeFromSubscribedTopics(topic) {
-        let subscribedTopics = this.state.subscribedTopics.filter((t) => t !== topic);
-        this.setState({subscribedTopics: subscribedTopics});
+    setSubscribe(topicId) {
+        this.setState({subscribedTopics: this.state.subscribedTopics.concat([topicId])});
+    }
+
+    addToSubscribedTopics(topicId) {
+        SubscriptionService.subscribe(topicId)
+            .catch((error) => {
+                this.setUnsubscribe(topicId);
+            });
+        this.setSubscribe(topicId);
+    }
+
+    removeFromSubscribedTopics(topicId) {
+        SubscriptionService.unsubscribe(topicId)
+            .catch((error) => {
+                this.setSubscribe(topicId);
+                console.error(error);
+            });
+        this.setUnsubscribe(topicId);
     }
 
     runSample() {
